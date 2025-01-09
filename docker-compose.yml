@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  prefect-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - PREFECT_WORKSPACE=${PREFECT_WORKSPACE}
+    volumes:
+      - ./:/app
+    networks:
+      - prefect-network
+
+networks:
+  prefect-network:
+    driver: bridge
